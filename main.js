@@ -21,7 +21,7 @@ con.connect(function(err) {
     console.log("Connected!");
 });
 
-
+// creating query function to reduce the ammount of code
 async function query(sql, values = []) {
     return new Promise((resolve, reject) => {
         con.query(sql, values, (err, result) => {
