@@ -1,9 +1,9 @@
 const express = require('express');
 const mysql = require('mysql');
 
-
+// need to check mustache
 const app = express();
-//app.use(express.static(path.join(__dirname, 'www')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
