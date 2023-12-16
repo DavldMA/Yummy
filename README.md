@@ -39,4 +39,3 @@ Contributions are welcome! Whether you're a developer, designer, or tester, feel
 Explore the ReceiptsHub project and take control of your receipts in a convenient and organized manner!
 
 **Link to Template:** [Delicious Template](https://themewagon.com/themes/free-bootstrap-4-html5-recipe-website-template-delicious/)
-```
