@@ -1,10 +1,17 @@
 const express = require('express');
-const path = require('path');
+var mustacheExpress = require('mustache-express');
+const recipes = require('./routes/recipes'); 
 
 const app = express();
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+app.use(express.static(__dirname + '/public'));
+
+app.engine('mustache', mustacheExpress());
+app.set('view engine', 'mustache'); //extensão dos ficheiros das views
+app.set('views', __dirname + '/views'); 
+
+app.get('/', function (req, res) {
+    res.render('home');
+});
 
 app.listen(8000, (err) => {
     if (err) {
