@@ -10,7 +10,7 @@ app.set('view engine', 'mustache'); //extensão dos ficheiros das views
 app.set('views', __dirname + '/views'); 
 
 app.get('/', function (req, res) {
-    res.render('home');
+    res.render('home', {menu: 'menu'});
 });
 
 app.listen(8000, (err) => {
