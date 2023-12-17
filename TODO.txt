@@ -1,2 +1,3 @@
 Change the ammount of ingredient for the shared table
 Load ingredients on the checklist or dropdown ig? ask teacher what is the best aproach
+My aproach would be create another forms and on the other forms I would just choose the ingredient and ammount, and after I add one appears another dropdown to select another ingredient if wanted maybe
