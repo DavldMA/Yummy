@@ -1,0 +1,2 @@
+Change the ammount of ingredient for the shared table
+Load ingredients on the checklist or dropdown ig? ask teacher what is the best aproach

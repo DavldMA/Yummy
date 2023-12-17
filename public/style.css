@@ -1164,6 +1164,23 @@ textarea:focus {
     display: inline-block;
     color: #40ba37; }
 
+.contact-form-area .form-control2 {
+  height: 52px;
+  width: 100%;
+  background-color: #f3f5f8;
+  font-size: 12px;
+  font-style: italic;
+  margin-bottom: 15px;
+  border: none;
+  border-left: 3px solid #f3f5f8;
+  border-radius: 0;
+  padding-left: 30px;
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms; }
+  .contact-form-area .form-control2:focus {
+    border-left: 3px solid #40ba37;
+    box-shadow: none; }
+
 .contact-form-area .form-control {
   height: 52px;
   width: 100%;

@@ -44,22 +44,52 @@
             <div class="row">
                 <div class="col-12">
                     <div class="contact-form-area">
-                        <form action="#" method="post">
+                        <form action="/submit-recipe" method="post">
                             <div class="row">
                                 <div class="col-12 col-lg-6">
-                                    <input type="text" class="form-control" id="name" placeholder="Name">
+                                    <input type="text" class="form-control" id="recipe" placeholder="Name of Recipe" required>
                                 </div>
                                 <div class="col-12 col-lg-6">
-                                    <input type="email" class="form-control" id="email" placeholder="E-mail">
+                                    <input type="text" class="form-control" id="author" placeholder="Author Name" required>
                                 </div>
-                                <div class="col-12">
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject">
+                                <div class="col-12 col-lg-6">
+                                    <input type="number" class="form-control" min="0" step="any" id="price" placeholder="Price" required>
                                 </div>
+                                <div class="col-12 col-lg-6">
+                                    <input type="number" class="form-control" id="time" placeholder="Time in Minutes" required>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <select class="form-control2" id="difficulty" placeholder="Select One!" required>
+                                        <option value="beginners">Beginners</option>
+                                        <option value="Intermediate">Intermediate</option>
+                                        <option value="experts">Experts</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <select class="form-control2" id="category" placeholder="Select One!" required>
+                                        <option value="vegan">Vegan</option>
+                                        <option value="meat">Meat</option>
+                                        <option value="fish">Fish</option>
+                                        <option value="raw">Raw</option>
+                                        <option value="lowcalories">Low Calories</option>
+                                        <option value="Vegetarian">Vegetarian</option>
+                                        <option value="No Sugar">No Sugar</option>
+                                    </select>
+                                </div>
+                                <!--<div class="col-12 col-lg-6">
+                                    <div class="col-12 col-lg-6">
+                                        <select class="form-control2" id="ingredient" placeholder="Select One!" required>
+                                            <option value="beginners">sugar</option>
+                                            <option value="Intermediate">eggs</option>
+                                            <option value="experts">milk</option>
+                                        </select>
+                                    </div>
+                                </div>-->
                                 <div class="col-12">
-                                    <textarea name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Message"></textarea>
+                                    <textarea name="description" class="form-control" id="description" cols="30" rows="10" placeholder="Preparation steps 1, 2, 3..."></textarea>
                                 </div>
                                 <div class="col-12 text-center">
-                                    <button class="btn delicious-btn mt-30" type="submit">Send</button>
+                                    <button class="btn delicious-btn mt-30" type="submit">Create New!</button>
                                 </div>
                             </div>
                         </form>
