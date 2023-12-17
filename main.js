@@ -12,13 +12,13 @@ app.set('views', __dirname + '/views');
 app.get('/', function (req, res) {
     
     res.render('home', {
-        menu: [ { hrefHome: './home.mustache', hrefRecipes: './views/menu.mustache' } ]
+        menu: [ { hrefHome: './home.mustache', hrefRecipes: './views/menu.mustache' } ], footer: "footer"
     });
 });
 
-app.get('/menu', function (req, res) {
+app.get('/add-recipe', function (req, res) {
     
-    res.render('menu');
+    res.render('add-recipe', { menu: "menu", footer: "footer"});
 });
 
 app.listen(8000, (err) => {
