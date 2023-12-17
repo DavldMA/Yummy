@@ -10,7 +10,15 @@ app.set('view engine', 'mustache'); //extensão dos ficheiros das views
 app.set('views', __dirname + '/views'); 
 
 app.get('/', function (req, res) {
-    res.render('home', {menu: 'menu'});
+    
+    res.render('home', {
+        menu: [ { hrefHome: './home.mustache', hrefRecipes: './views/menu.mustache' } ]
+    });
+});
+
+app.get('/menu', function (req, res) {
+    
+    res.render('menu');
 });
 
 app.listen(8000, (err) => {
@@ -20,9 +28,6 @@ app.listen(8000, (err) => {
         console.log(`Server Running at: http://localhost:8000`);
     }
 });
-
-/*alter user 'root'@'localhost' identified with mysql_native_password by 'xdxdxd';
-flush privileges; */
 
 /*
 
