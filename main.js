@@ -21,6 +21,21 @@ app.get('/add-recipe', function (req, res) {
     res.render('add-recipe', { menu: "menu", footer: "footer"});
 });
 
+app.get('/recipe-post', function (req, res) {
+    
+    res.render('recipe-post', { menu: "menu", footer: "footer"});
+});
+
+app.get('/all-recipes', function (req, res) {
+    
+    res.render('add-recipe', { menu: "menu", footer: "footer"});
+});
+
+app.get('/login', function (req, res) {
+    
+    res.render('login', { menu: "menu", footer: "footer"});
+});
+
 app.listen(8000, (err) => {
     if (err) {
         console.log('Error starting the server: ' + err);
