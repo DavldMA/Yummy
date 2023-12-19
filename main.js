@@ -4,6 +4,7 @@ const cookieSession = require('cookie-session');
 const recipes = require('./routes/recipes'); 
 
 const app = express();
+app.use(express.urlencoded());
 app.use(express.static(__dirname + '/public'));
 
 app.engine('mustache', mustacheExpress());
@@ -47,16 +48,14 @@ app.get('/all-recipes', function (req, res) {
 });
 
 app.get('/login', function (req, res) {
-    const your_variable = 3;
-    res.render('login', { menu: [ { value: your_variable, isEqualToOne: your_variable === 1 } ], footer: "footer"});
+    res.render('login', { menu: [ { isLogged: req.session.authenticated } ], footer: "footer"});
 });
 
 app.post('/login', async (req, res) => {
-    const { gmail, password } = req.body;
-    
+    //colocar isso em outro ficheiro provavelmente com o exports e chamar a funcao aqui e prontos
     try {
         const sql = 'SELECT * FROM users WHERE username = ? AND password = ?';
-        const result = await query(sql, [gmail, password]);
+        const result = await connection.query(sql, [req.body.gmail, req.body.password]);
         
         if (result.length > 0) {
             req.session.authenticated = true;

@@ -23,12 +23,6 @@
                             <div class="classycloseIcon">
                                 <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
                             </div>
-                                {{#isEqualToOne}}
-                                    <p>It's equal to one!</p>
-                                {{/isEqualToOne}}
-                                {{^isEqualToOne}}
-                                    <p>It's not equal to one.</p>
-                                {{/isEqualToOne}}
 
                             <!-- Nav Start -->
                             <div class="classynav">
@@ -36,7 +30,12 @@
                                     <li class="active"><a href="/">Home</a></li>
                                     <li><a href="/menu">Recipes</a></li>
                                     <li><a href="/{{isEqualToOne}}">Recipes Api</a></li>
-                                    <li><a href="/add-recipe">Login</a></li>
+                                    {{#isLogged}}
+                                        <li><a href="/add-recipe">Logout</a></li>
+                                    {{/isLogged}}
+                                    {{^isLogged}}
+                                        <li><a href="/login">Login</a></li>
+                                    {{/isLogged}}
                                 </ul>
 
                             </div>
