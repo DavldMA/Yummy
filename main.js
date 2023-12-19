@@ -21,14 +21,6 @@ app.use(cookieSession({
 }));
 
 
-
-function requireAuth(req, res, next) {
-    if (req.session.authenticated) {
-        next();
-    } else {
-        pageLoader(res, req, "login");
-    }
-}
 //menu: [ { hrefHome: './home.mustache', hrefRecipes: './views/menu.mustache' } ], footer: "footer"
 app.get('/', function (req, res) {
     

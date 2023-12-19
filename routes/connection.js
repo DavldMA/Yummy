@@ -90,6 +90,27 @@ async function getAllData(table) {
     }
 }
 
+function requireAuth(req, res, next) {
+    if (req.session.authenticated) {
+        next();
+    } else {
+        pageLoader(res, req, "login");
+    }
+}
+
+function loadNewPage(req, res, page) {
+    switch (page) {
+        case 'home':
+            return res.render('home', { menu: [ { isLogged: req.session.authenticated } ], footer: "footer"});
+        case 'login':
+            return res.render('login', { menu: [ { isLogged: req.session.authenticated } ], footer: "footer"});
+        case 'register':
+            return asyncFunction3();
+        default:
+            return res.render('home', { menu: [ { isLogged: req.session.authenticated } ], footer: "footer"});
+    }
+}
+
 module.exports = {
-    getAllData, deleteAllData, getDataById, editDataById, deleteDataById, insertData, query
+    getAllData, deleteAllData, getDataById, editDataById, deleteDataById, insertData, query, requireAuth, loadNewPage
 };

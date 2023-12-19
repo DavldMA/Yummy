@@ -1,7 +1,7 @@
 const connection = require("./connection")
 
 function getLogin(req, res) {
-    res.render('login', { menu: [ { isLogged: req.session.authenticated } ], footer: "footer"});
+    connection.loadNewPage(req, res, "login");
 }
 
 async function postLogin(req, res) {
@@ -11,9 +11,9 @@ async function postLogin(req, res) {
         
         if (result.length > 0) {
             req.session.authenticated = true;
-            res.render('home', { menu: "menu", footer: "footer"});
+            connection.loadNewPage(req, res, "home");
         } else {
-            res.render('login', { menu: "menu", footer: "footer"});
+            connection.loadNewPage(req, res, "login");
         }
     } catch (err) {
         console.log('Error retrieving user data:', err);
@@ -21,16 +21,16 @@ async function postLogin(req, res) {
 }
 
 function getRegister(req, res) {
-    res.render('register', { menu: "menu", footer: "footer"});
+    connection.loadNewPage(req, res, "register");
 }
 
 function postRegister(req, res) {
-    res.render('register', { menu: "menu", footer: "footer"});
+    connection.loadNewPage(req, res, "register");
 }
 
 function getLogout(req, res) {
     req.session = null;
-    res.render('home', { menu: "menu", footer: "footer"});
+    connection.loadNewPage(res, req, "home")
 }
 
 module.exports = {
