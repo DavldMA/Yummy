@@ -1,7 +1,10 @@
 const express = require('express');
-var mustacheExpress = require('mustache-express');
+const mustacheExpress = require('mustache-express');
 const cookieSession = require('cookie-session');
-const recipes = require('./routes/recipes'); 
+const user = require('./routes/user'); 
+const recipes = require('./routes/recipes');
+const ingredients = require('./routes/ingredients')
+
 
 const app = express();
 app.use(express.urlencoded());
@@ -48,34 +51,23 @@ app.get('/all-recipes', function (req, res) {
 });
 
 app.get('/login', function (req, res) {
-    res.render('login', { menu: [ { isLogged: req.session.authenticated } ], footer: "footer"});
+    user.getLogin(req, res)
 });
 
 app.post('/login', async (req, res) => {
-    //colocar isso em outro ficheiro provavelmente com o exports e chamar a funcao aqui e prontos
-    try {
-        const sql = 'SELECT * FROM users WHERE username = ? AND password = ?';
-        const result = await connection.query(sql, [req.body.gmail, req.body.password]);
-        
-        if (result.length > 0) {
-            req.session.authenticated = true;
-            res.render('home', { menu: "menu", footer: "footer"});
-        } else {
-            res.render('login', { menu: "menu", footer: "footer"});
-        }
-    } catch (err) {
-        console.log('Error retrieving user data:', err);
-    }
-});
-
-app.get('/logout', (req, res) => {
-    req.session = null;
-    res.render('home', { menu: "menu", footer: "footer"});
+    await user.postLogin(req, res);
 });
 
 app.get('/register', function (req, res) {
-    
-    res.render('register', { menu: "menu", footer: "footer"});
+    user.getRegister(req, res);
+});
+
+app.post('/register', function (req, res) {
+    user.postRegister(req, res);
+});
+
+app.get('/logout', (req, res) => {
+    user.getLogout(req, res);
 });
 
 app.listen(8000, (err) => {

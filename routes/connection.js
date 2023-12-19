@@ -89,3 +89,7 @@ async function getAllData(table) {
         console.log('Error accessing database: ' + err);
     }
 }
+
+module.exports = {
+    getAllData, deleteAllData, getDataById, editDataById, deleteDataById, insertData, query
+};
