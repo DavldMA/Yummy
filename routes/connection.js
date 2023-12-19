@@ -1,21 +1,19 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
-const con = mysql.createConnection({
+const connection = {
     host: 'localhost',
     database: 'recipesDB',
     user: 'root',
     password: 'xdxdxd',
     port: '3306'
-});
+};
 
-con.connect(function(err) {
-    if (err) throw err;
-    console.log("Connected!");
-});
 
 // creating query function to reduce the ammount of code
 async function query(sql, values = []) {
-    return new Promise((resolve, reject) => {
+    var con = mysql.createConnection(connection)
+    con.connect();
+    let promise = new Promise((resolve, reject) => {
         con.query(sql, values, (err, result) => {
             if (err) {
                 reject(err);
@@ -23,7 +21,10 @@ async function query(sql, values = []) {
                 resolve(result);
             }
         });
+        
     });
+    con.end();
+    return promise;
 }
 
 
@@ -60,15 +61,33 @@ async function editDataById(table, id, data) {
     }
 }
 
-async function getDataById(table, id) {
+async function getData(table, param = null, value = null, param2 = null, value2 = null) {
     try {
-        const sql = `SELECT * FROM ${table} WHERE id = ?`;
-        const result = await query(sql, id);
-        return(result);
+        let sql = `SELECT * FROM ${table}`;
+        const values = [];
+
+        if (param !== null && value !== null) {
+            sql += ` WHERE ${param} = ?`;
+            values.push(value);
+        }
+
+        if (param2 !== null && value2 !== null) {
+            if (values.length === 0) {
+                sql += ` WHERE ${param2} = ?`;
+            } else {
+                sql += ` AND ${param2} = ?`;
+            }
+            values.push(value2);
+        }
+
+        const result = await query(sql, values);
+        return result;
     } catch (err) {
         console.log('Error retrieving data: ' + err);
     }
 }
+
+
 
 async function deleteAllData(table) {
     try {
@@ -105,12 +124,12 @@ function loadNewPage(req, res, page) {
         case 'login':
             return res.render('login', { menu: [ { isLogged: req.session.authenticated } ], footer: "footer"});
         case 'register':
-            return asyncFunction3();
+            return res.render('register', { menu: [ { isLogged: req.session.authenticated } ], footer: "footer"});
         default:
             return res.render('home', { menu: [ { isLogged: req.session.authenticated } ], footer: "footer"});
     }
 }
-
+//console.log(getData("user", "password", "password1", "id", 1))
 module.exports = {
-    getAllData, deleteAllData, getDataById, editDataById, deleteDataById, insertData, query, requireAuth, loadNewPage
+    getAllData, deleteAllData, getData, editDataById, deleteDataById, insertData, query, requireAuth, loadNewPage
 };

@@ -54,8 +54,8 @@ app.get('/register', function (req, res) {
     user.getRegister(req, res);
 });
 
-app.post('/register', function (req, res) {
-    user.postRegister(req, res);
+app.post('/register', async (req, res) => {
+    await user.postRegister(req, res);
 });
 
 app.get('/logout', (req, res) => {

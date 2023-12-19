@@ -15,8 +15,7 @@ CREATE TABLE IF NOT EXISTS user (
 -- Create the ingredient table with quantity
 CREATE TABLE IF NOT EXISTS ingredient (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    quantity TEXT NOT NULL
+    name VARCHAR(255) NOT NULL
 );
 
 -- Create the recipe table
@@ -33,9 +32,10 @@ CREATE TABLE IF NOT EXISTS recipe (
 
 -- Create the recipe_ingredient table to connect recipe and ingredient
 CREATE TABLE IF NOT EXISTS recipe_ingredient (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    quantity TEXT NOT NULL,
     recipe_id INT,
     ingredient_id INT,
-    PRIMARY KEY (recipe_id, ingredient_id),
     FOREIGN KEY (recipe_id) REFERENCES recipe(id),
     FOREIGN KEY (ingredient_id) REFERENCES ingredient(id)
 );
