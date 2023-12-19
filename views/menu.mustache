@@ -1,5 +1,6 @@
 {{#menu}}
     <header class="header-area">
+
         <!-- Navbar Area -->
         <div class="delicious-main-menu">
             <div class="classy-nav-container breakpoint-off">
@@ -22,13 +23,19 @@
                             <div class="classycloseIcon">
                                 <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
                             </div>
+                                {{#isEqualToOne}}
+                                    <p>It's equal to one!</p>
+                                {{/isEqualToOne}}
+                                {{^isEqualToOne}}
+                                    <p>It's not equal to one.</p>
+                                {{/isEqualToOne}}
 
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
                                     <li class="active"><a href="/">Home</a></li>
                                     <li><a href="/menu">Recipes</a></li>
-                                    <li><a href="/menu">Recipes Api</a></li>
+                                    <li><a href="/{{isEqualToOne}}">Recipes Api</a></li>
                                     <li><a href="/add-recipe">Login</a></li>
                                 </ul>
 
