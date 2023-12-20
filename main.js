@@ -27,10 +27,6 @@ app.get('/', function (req, res) {
     nav.loadNewPage(req, res, "home");
 });
 
-app.get('/add-recipe', function (req, res) {
-    
-    res.render('add-recipe', { menu: "menu", footer: "footer"});
-});
 
 app.get('/add-ingredient', function (req, res) {
     nav.loadNewPage(req, res, "add-ingredient");
@@ -40,6 +36,11 @@ app.get('/add-ingredient', function (req, res) {
 app.post('/add-ingredient', function (req, res) {
     
     ingredients.postIngredient(req, res);
+});
+
+app.get('/add-recipe', async (req, res) => {
+    data = await ingredients.getAllIngredients(req, res);
+    nav.loadNewPage(req, res, "add-recipe", data);
 });
 
 app.get('/recipe-post', function (req, res) {
