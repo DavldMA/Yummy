@@ -109,27 +109,6 @@ async function getAllData(table) {
     }
 }
 
-function requireAuth(req, res, next) {
-    if (req.session.authenticated) {
-        next();
-    } else {
-        pageLoader(res, req, "login");
-    }
-}
-
-function loadNewPage(req, res, page) {
-    switch (page) {
-        case 'home':
-            return res.render('home', { menu: [ { isLogged: req.session.authenticated } ], footer: "footer"});
-        case 'login':
-            return res.render('login', { menu: [ { isLogged: req.session.authenticated } ], footer: "footer"});
-        case 'register':
-            return res.render('register', { menu: [ { isLogged: req.session.authenticated } ], footer: "footer"});
-        default:
-            return res.render('home', { menu: [ { isLogged: req.session.authenticated } ], footer: "footer"});
-    }
-}
-//console.log(getData("user", "password", "password1", "id", 1))
 module.exports = {
-    getAllData, deleteAllData, getData, editDataById, deleteDataById, insertData, query, requireAuth, loadNewPage
+    getAllData, deleteAllData, getData, editDataById, deleteDataById, insertData, query
 };

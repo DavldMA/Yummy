@@ -3,7 +3,8 @@ const mustacheExpress = require('mustache-express');
 const cookieSession = require('cookie-session');
 const user = require('./routes/user'); 
 const recipes = require('./routes/recipes');
-const ingredients = require('./routes/ingredients')
+const ingredients = require('./routes/ingredients');
+const nav = require('./routes/navigation');
 
 
 const app = express();
@@ -21,15 +22,24 @@ app.use(cookieSession({
 }));
 
 
-//menu: [ { hrefHome: './home.mustache', hrefRecipes: './views/menu.mustache' } ], footer: "footer"
+
 app.get('/', function (req, res) {
-    
-    res.render('home', { menu: "menu", footer: "footer"});
+    nav.loadNewPage(req, res, "home");
 });
 
 app.get('/add-recipe', function (req, res) {
     
     res.render('add-recipe', { menu: "menu", footer: "footer"});
+});
+
+app.get('/add-ingredient', function (req, res) {
+    nav.loadNewPage(req, res, "add-ingredient");
+    
+});
+
+app.post('/add-ingredient', function (req, res) {
+    
+    ingredients.postIngredient(req, res);
 });
 
 app.get('/recipe-post', function (req, res) {
@@ -43,7 +53,8 @@ app.get('/all-recipes', function (req, res) {
 });
 
 app.get('/login', function (req, res) {
-    user.getLogin(req, res)
+    req.session.authenticated = false;
+    nav.loadNewPage(req, res, "login");
 });
 
 app.post('/login', async (req, res) => {
@@ -51,15 +62,17 @@ app.post('/login', async (req, res) => {
 });
 
 app.get('/register', function (req, res) {
-    user.getRegister(req, res);
+    req.session.authenticated = false;
+    nav.loadNewPage(req, res, "register");
 });
 
 app.post('/register', async (req, res) => {
     await user.postRegister(req, res);
 });
 
-app.get('/logout', (req, res) => {
-    user.getLogout(req, res);
+app.get('/logout', function (req, res) {
+    req.session.authenticated = false;
+    nav.loadNewPage(req, res, "home")
 });
 
 app.listen(8000, (err) => {
@@ -69,14 +82,3 @@ app.listen(8000, (err) => {
         console.log(`Server Running at: http://localhost:8000`);
     }
 });
-
-/*
-
-console.log(insertData("user", {
-    "username": "example_user",
-    "email": "user@example.com",
-    "password": "hashed_password_here"
-}))
-console.log(getAllData("user"))
-
-*/

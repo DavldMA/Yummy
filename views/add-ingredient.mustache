@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Delicious - Food Blog Template | Contact</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/core-img/favicon.ico">
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <i class="circle-preloader"></i>
+        <img src="img/core-img/salad.png" alt="">
+    </div>
+
+
+    <!-- ##### Header Area Start ##### -->
+    {{>menu}}
+    <!-- ##### Header Area End ##### -->
+    <!-- ##### Contact Form Area Start ##### -->
+    <div class="contact-area section-padding-0-80">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading">
+                        <h3>Add a New Ingredient</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="contact-form-area">
+                        <form action="/add-ingredient" method="post">
+                            <div class="row">
+                                <div class="col-12">
+                                    <input type="text" class="form-control" id="ingredient" name="ingredient" placeholder="Name of the Ingredient" required>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <button class="btn delicious-btn mt-30" type="submit">Create New!</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Contact Form Area End ##### -->
+
+
+    <!-- ##### Footer Area Start ##### -->
+    {{>footer}}
+    <!-- ##### Footer Area Start ##### -->
+
+    <!-- ##### All Javascript Files ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="js/active.js"></script>
+</body>
+
+</html>
