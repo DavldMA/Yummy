@@ -12,9 +12,10 @@ Yummy is an open-source web application developed as part of a school project, a
 
 1. **Recipe Upload:** Easily share and upload your favorite recipes through a simple and intuitive interface.
 2. **Categorization:** Organize recipes into categories such as breakfast, lunch, dinner, desserts, and more.
-3. **Search and Filter:** Quickly find specific recipes using powerful search and filtering options based on ingredients, cuisine, or dietary preferences.
+3. **API Requests:** Make requests on a mealsDB api, in order to generate more content without the need for an admin for it.
 4. **Cooking Insights:** Track your cooking adventures and gain insights into your culinary journey over time.
 5. **User Authentication:** Securely manage your recipes and personalize your culinary experience with user accounts and authentication.
+6. **Share:** Share your meals, recipes and ingredients with your friends.
 
 ## How to Use
 
