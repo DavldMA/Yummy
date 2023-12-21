@@ -2,7 +2,6 @@ const express = require('express');
 
 const mustacheExpress = require('mustache-express');
 const cookieSession = require('cookie-session');
-const con = require('./routes/connection')
 const user = require('./routes/user'); 
 const recipes = require('./routes/recipes');
 const ingredients = require('./routes/ingredients');
@@ -28,12 +27,15 @@ app.get('/', function (req, res) {
     nav.loadNewPage(req, res, "home");
 });
 
-app.get('/api/:id', (req, res) => {
-    if (req.params.id != 'style.css') {
-        console.log("Request params:", req.params);
-        recipes.apiRecipePostLoad(req, res);
-    }
+app.get('/recipes', function (req, res) {
+    res.send('This is the /api route');
 });
+
+
+app.get('/api:id', function (req, res) {
+    recipes.apiRecipePostLoad(req, res);
+});
+
 
 
 app.get('/add-ingredient', function (req, res) {

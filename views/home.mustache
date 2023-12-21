@@ -80,39 +80,32 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-    <!-- ##### Top Catagory Area End ##### -->
-
-    <!-- ##### Best Receipe Area Start ##### -->
-    <section class="best-receipe-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-heading">
-                        <h3>Top Recipes this Month</h3>
+                <div class="col-12 col-lg-6">
+                    <div class="single-top-catagory">
+                        <img src="img/bg-img/bg3.jpg" alt="">
+                        <!-- Content -->
+                        <div class="top-cta-content">
+                            <h3>Chinesse Noodles</h3>
+                            <h6>Simple &amp; Delicios</h6>
+                            <a href="receipe-post.html" class="btn delicious-btn">See Full Receipe</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
-                <!-- Single Best Receipe Area -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="single-best-receipe-area mb-30">
-                        <img src="img/bg-img/r1.jpg" alt="">
-                        <div class="receipe-content">
-                            <a href="receipe-post.html">
-                                <h5>Sushi Easy Receipy</h5>
-                            </a>
-                            <div>categoria</div>
+                <div class="col-12 col-lg-6">
+                    <div class="single-top-catagory">
+                        <img src="img/bg-img/bg3.jpg" alt="">
+                        <!-- Content -->
+                        <div class="top-cta-content">
+                            <h3>Chinesse Noodles</h3>
+                            <h6>Simple &amp; Delicios</h6>
+                            <a href="receipe-post.html" class="btn delicious-btn">See Full Receipe</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- ##### Best Receipe Area End ##### -->
+    <!-- ##### Top Catagory Area End ##### -->
 
     <!-- ##### CTA Area Start ##### -->
     <section class="cta-area bg-img bg-overlay" style="background-image: url(img/bg-img/bg4.jpg);">
@@ -191,7 +184,7 @@
             document.getElementById(`imageMealContainer1`).style.backgroundImage = 'url(' + meal.strMealThumb + ')';
             document.getElementById(`nameMealContainer1`).innerText = meal.strMeal;
             document.getElementById(`descriptionMealContainer1`).innerText = meal.strInstructions.replace(/(\r\n|\n|\r)/gm,"");;
-            document.getElementById(`linkMealContainer1`).href = '/api/' + meal.idMeal;
+            document.getElementById(`linkMealContainer1`).href = '/api' + meal.idMeal;
             var divs = document.getElementById(`descriptionMealContainer1`);
             divs.innerHTML = divs.innerHTML.substring(0,1000);
         }

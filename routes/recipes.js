@@ -62,7 +62,7 @@ async function apiRecipePostLoad(req, res) {
 
         const response = await axios.get(apiUrl);
         
-        nav.loadNewPage(req, res, "recipe-post", response.data);
+        nav.loadNewPage(req, res, "recipe-postAPI", response.data);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Error fetching data from the API' });
