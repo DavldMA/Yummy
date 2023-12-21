@@ -44,60 +44,50 @@
             <div class="row">
                 <div class="col-12">
                     <div class="contact-form-area">
-                        <form action="/submit-recipe" method="post">
+                        <form action="/add-recipe" method="post">
                             <div class="row">
                                 <div class="col-12 col-lg-6">
-                                    <input type="text" class="form-control" id="recipe" placeholder="Name of Recipe" required>
+                                    <input type="text" class="form-control" id="recipe" name="recipe" placeholder="Name of Recipe" required>
                                 </div>
                                 <div class="col-12 col-lg-6">
-                                    <input type="text" class="form-control" id="author" placeholder="Author Name" required>
+                                    <input type="text" class="form-control" id="author" name="author" placeholder="Author Name" required>
                                 </div>
                                 <div class="col-12 col-lg-6">
-                                    <input type="number" class="form-control" min="0" step="any" id="price" placeholder="Price" required>
+                                    <input type="number" class="form-control" min="0" step="any" id="price" name="price" placeholder="Price" required>
                                 </div>
                                 <div class="col-12 col-lg-6">
-                                    <input type="number" class="form-control" id="time" placeholder="Time in Minutes" required>
+                                    <input type="number" class="form-control" id="time" name="time" placeholder="Time in Minutes" required>
                                 </div>
                                 <div class="col-12 col-lg-6">
-                                    <select class="form-control2" id="difficulty" placeholder="Select One!" required>
+                                    <select class="form-control2" id="difficulty" name="difficulty" placeholder="Select One!" required>
                                         <option value="beginner">Beginner</option>
                                         <option value="intermediate">Intermediate</option>
                                         <option value="expert">Expert</option>
                                     </select>
                                 </div>
                                 <div class="col-12 col-lg-6">
-                                    <select class="form-control2" id="category" placeholder="Select One!" required>
+                                    <select class="form-control2" id="category" name="category" placeholder="Select One!" required>
                                         <option value="breakfast">Breakfast</option>
                                         <option value="lunch">Lunch</option>
                                         <option value="dinner">Dinner</option>
                                         <option value="desserts">Desserts</option>
                                     </select>
                                 </div>
-                                <div class="col-12 col-lg-3">
-                                    <div id=unique-box-form>
-                                        <div class="col-12">
-                                            <select class="form-control2" id="ingredient" placeholder="Select One!" required>
-                                                <!-- load from db -->
-                                                {{#ingredients}}
-                                                    <option value="name">{{name}}</option>
-                                                {{/ingredients}}
-                                            </select>
-                                        </div>
+                                <div class="col-12">
+                                    <textarea name="description" class="form-control" id="description" cols="30" rows="10" placeholder="Preparation steps 1, 2, 3..."></textarea>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div id="unique-box-form">
                                     </div>
                                 </div>
-                                <div class="col-12 col-lg-3">
-                                    <div id=unique-box-input>
-                                        <div class="col-12">
-                                            <input type="text" class="form-control" id="author" placeholder="Ingredient Ammount" required>
-                                        </div>
+                                <div class="col-12 col-lg-6">
+                                    <div id="unique-box-input">
                                     </div>
                                     <div class="col-12 text-center">
                                         <button class="btn delicious-btn mt-30" onclick="createMoreEntries()">+</button>
                                     </div>
                                 </div>
-                                <div class="col-12 col-lg-6">
-                                    <textarea name="description" class="form-control" id="description" cols="30" rows="10" placeholder="Preparation steps 1, 2, 3..."></textarea>
-                                </div>
+                                
                                 <div class="col-12 text-center">
                                     <button class="btn delicious-btn mt-30" type="submit">Create New!</button>
                                 </div>
@@ -126,6 +116,33 @@
     <script src="js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
+    <script>
+        let entryCount = 0;
+
+
+        function createMoreEntries() {
+            entryCount++;
+
+            const newEntry1 = `
+                <div class="col-12">
+                    <input type="text" class="form-control" id="author" name="ammounts" placeholder="Ingredient Ammount" required>
+                </div>
+            `;
+
+            const newEntry = `
+                <div class="col-12">
+                    <select class="form-control2" id="ingredient" name="ingredients" placeholder="Select One!" required>
+                        {{#ingredients}}
+                            <option value="{{name}}">{{name}}</option>
+                        {{/ingredients}}
+                    </select>
+                </div>
+            `;
+
+            $('#unique-box-form').append(newEntry);
+            $('#unique-box-input').append(newEntry1);
+        }
+    </script>
 </body>
 
 </html>

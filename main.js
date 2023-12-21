@@ -43,6 +43,10 @@ app.get('/add-recipe', async (req, res) => {
     nav.loadNewPage(req, res, "add-recipe", data);
 });
 
+app.post('/add-recipe', async (req, res) => {
+    recipes.postRecipe(req, res);
+});
+
 app.get('/recipe-post', function (req, res) {
     
     res.render('recipe-post', { menu: "menu", footer: "footer"});
