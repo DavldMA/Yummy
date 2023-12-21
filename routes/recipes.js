@@ -10,6 +10,7 @@ async function postRecipe(req, res) {
         const difficulty = req.body.difficulty;
         const category = req.body.category;
         const description = req.body.description;
+
         
         //get array of ingredients and ammount of it
         const ingredients = req.body.ingredients instanceof Array
@@ -31,18 +32,19 @@ async function postRecipe(req, res) {
         };
 
         const idRecipe = await connection.insertData("recipe", data)
-
-        for (let i = 0; i < ingredients.length; i++) {
-            const result = await connection.getData("ingredient", "name", ingredients[i]);
-            const idIngredient = result[0].id;
-            const dataRecipe = {
-                quantity: ammounts[i],
-                recipe_id: idRecipe,
-                ingredient_id: idIngredient
-            };
-            await connection.insertData("recipe_ingredient", dataRecipe);
-        }        
-        
+        if(ingredients[0] != null) {
+            console.log(ingredients[0])
+            for (let i = 0; i < ingredients.length; i++) {
+                const result = await connection.getData("ingredient", "name", ingredients[i]);
+                const idIngredient = result[0].id;
+                const dataRecipe = {
+                    quantity: ammounts[i],
+                    recipe_id: idRecipe,
+                    ingredient_id: idIngredient
+                };
+                await connection.insertData("recipe_ingredient", dataRecipe);
+            }        
+        }
         
 
         nav.loadNewPage(req, res, 'home');

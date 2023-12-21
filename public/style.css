@@ -481,6 +481,21 @@ textarea:focus {
   margin-left: 4%;
   margin-right: 4%; }
 
+.hero-slides-content {
+  position: relative;
+  z-index: 1;
+  padding: 60px 50px;
+  border-left: 3px solid #40ba37;
+  color: white;
+  background-color: rgba(24, 24, 24, 0.54)
+}
+
+.size-max {
+  position: relative;
+  width: 100%;
+  min-height: 820px;
+}
+  
 .hero-slides {
   position: relative;
   z-index: 1; }

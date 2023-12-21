@@ -1,11 +1,11 @@
 const express = require('express');
 const mustacheExpress = require('mustache-express');
 const cookieSession = require('cookie-session');
+const con = require('./routes/connection')
 const user = require('./routes/user'); 
 const recipes = require('./routes/recipes');
 const ingredients = require('./routes/ingredients');
 const nav = require('./routes/navigation');
-
 
 const app = express();
 app.use(express.urlencoded());
@@ -49,7 +49,7 @@ app.post('/add-recipe', async (req, res) => {
 
 app.get('/recipe-post', function (req, res) {
     
-    res.render('recipe-post', { menu: "menu", footer: "footer"});
+    nav.loadNewPage(req, res, "recipe-post");
 });
 
 app.get('/all-recipes', function (req, res) {

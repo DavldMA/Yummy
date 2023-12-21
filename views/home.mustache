@@ -19,7 +19,7 @@
 
 </head>
 
-<body>
+<body id="demo">
     <!-- Preloader -->
     <div id="preloader">
         <i class="circle-preloader"></i>
@@ -32,52 +32,23 @@
 
     <!-- ##### Hero Area Start ##### -->
     <section class="hero-area">
-        <div class="hero-slides owl-carousel">
+        <div class="size-max">
             <!-- Single Hero Slide -->
-            <div class="single-hero-slide bg-img" style="background-image: url(https://www.themealdb.com//images//media//meals//qstyvs1505931190.jpg);">
+            <div id="imageMealContainer1" class="size-max bg-img" style="background-image: url(https://www.themealdb.com//images//media//meals//qstyvs1505931190.jpg);">
                 <div class="container h-100">
                     <div class="row h-100 align-items-center">
                         <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                             <div class="hero-slides-content" data-animation="fadeInUp" data-delay="100ms">
-                                <h2 data-animation="fadeInUp" data-delay="300ms">Delicios Homemade Burger</h2>
-                                <p data-animation="fadeInUp" data-delay="700ms">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tristique nisl vitae luctus sollicitudin. Fusce consectetur sem eget dui tristique, ac posuere arcu varius.</p>
-                                <a href="#" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">See Receipe</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Hero Slide -->
-            <div class="single-hero-slide bg-img" style="background-image: url(img/bg-img/bg6.jpg);">
-                <div class="container h-100">
-                    <div class="row h-100 align-items-center">
-                        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-                            <div class="hero-slides-content" data-animation="fadeInUp" data-delay="100ms">
-                                <h2 data-animation="fadeInUp" data-delay="300ms">Delicios Homemade Burger</h2>
-                                <p data-animation="fadeInUp" data-delay="700ms">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tristique nisl vitae luctus sollicitudin. Fusce consectetur sem eget dui tristique, ac posuere arcu varius.</p>
-                                <a href="#" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">See Receipe</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Hero Slide -->
-            <div class="single-hero-slide bg-img" style="background-image: url(img/bg-img/bg7.jpg);">
-                <div class="container h-100">
-                    <div class="row h-100 align-items-center">
-                        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-                            <div class="hero-slides-content" data-animation="fadeInUp" data-delay="100ms">
-                                <h2 data-animation="fadeInUp" data-delay="300ms">Delicios Homemade Burger</h2>
-                                <p data-animation="fadeInUp" data-delay="700ms">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tristique nisl vitae luctus sollicitudin. Fusce consectetur sem eget dui tristique, ac posuere arcu varius.</p>
-                                <a href="#" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">See Receipe</a>
+                                <h2 id="nameMealContainer1" style="color: #ffffff;" data-animation="fadeInUp" data-delay="300ms">Delicios Homemade Burger</h2>
+                                <p id="descriptionMealContainer1" style="color: #ffffff; data-animation="fadeInUp" data-delay="700ms">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tristique nisl vitae luctus sollicitudin. Fusce consectetur sem eget dui tristique, ac posuere arcu varius.</p>
+                                <a id="linkMealContainer1" href="#" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">See Receipe</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        
     </section>
     <!-- ##### Hero Area End ##### -->
 
@@ -201,6 +172,32 @@
     <script src="js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
+    <script>
+        function getRandomMeal() {
+            var xhr = new XMLHttpRequest();
+
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    displayMeal(response.meals[0]);
+                }
+            };
+
+            xhr.open("GET", "https://www.themealdb.com/api/json/v1/1/random.php", true);
+            xhr.send();
+        }
+
+        function displayMeal(meal) {
+            document.getElementById(`imageMealContainer1`).style.backgroundImage = 'url(' + meal.strMealThumb + ')';
+            document.getElementById(`nameMealContainer1`).innerText = meal.strMeal;
+            document.getElementById(`descriptionMealContainer1`).innerText = meal.strInstructions.replace(/(\r\n|\n|\r)/gm,"");;
+            document.getElementById(`linkMealContainer1`).href = '/recipe/' + meal.idMeal;
+            var divs = document.getElementById(`descriptionMealContainer1`);
+            divs.innerHTML = divs.innerHTML.substring(0,1000);
+        }
+        getRandomMeal();
+
+    </script>
 </body>
 
 </html>
