@@ -31,10 +31,12 @@
                                     <li><a href="/menu">Recipes</a></li>
                                     <li><a href="/{{isEqualToOne}}">Recipes Api</a></li>
                                     {{#isLogged}}
+                                        <li><a href="/add-recipe">Add Recipe</a></li>
+                                        <li><a href="/add-ingredient">Add Ingredient</a></li>
                                         <li><a href="/logout">Logout</a></li>
                                     {{/isLogged}}
                                     {{^isLogged}}
-                                        <li><a href="/login">Login</a></li>
+                                        <li><a href="/register">Register</a></li>
                                     {{/isLogged}}
                                 </ul>
 
