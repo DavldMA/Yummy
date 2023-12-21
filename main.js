@@ -1,4 +1,5 @@
 const express = require('express');
+
 const mustacheExpress = require('mustache-express');
 const cookieSession = require('cookie-session');
 const con = require('./routes/connection')
@@ -8,9 +9,9 @@ const ingredients = require('./routes/ingredients');
 const nav = require('./routes/navigation');
 
 const app = express();
-app.use(express.urlencoded());
 app.use(express.static(__dirname + '/public'));
-
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb'}));
 app.engine('mustache', mustacheExpress());
 app.set('view engine', 'mustache'); //extensão dos ficheiros das views
 app.set('views', __dirname + '/views'); 
@@ -25,6 +26,13 @@ app.use(cookieSession({
 
 app.get('/', function (req, res) {
     nav.loadNewPage(req, res, "home");
+});
+
+app.get('/api/:id', (req, res) => {
+    if (req.params.id != 'style.css') {
+        console.log("Request params:", req.params);
+        recipes.apiRecipePostLoad(req, res);
+    }
 });
 
 
@@ -44,7 +52,7 @@ app.get('/add-recipe', async (req, res) => {
 });
 
 app.post('/add-recipe', async (req, res) => {
-    recipes.postRecipe(req, res);
+    await recipes.postRecipe(req, res);
 });
 
 app.get('/recipe-post', function (req, res) {

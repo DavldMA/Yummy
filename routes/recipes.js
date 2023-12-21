@@ -1,5 +1,6 @@
 const connection = require('./connection'); 
 const nav = require('./navigation');
+const axios = require('axios');
 
 async function postRecipe(req, res) {
     try {
@@ -10,7 +11,7 @@ async function postRecipe(req, res) {
         const difficulty = req.body.difficulty;
         const category = req.body.category;
         const description = req.body.description;
-
+        const image = req.body.imageData;
         
         //get array of ingredients and ammount of it
         const ingredients = req.body.ingredients instanceof Array
@@ -28,12 +29,12 @@ async function postRecipe(req, res) {
             difficulty: difficulty,
             category: category,
             time: time,
-            cost: price
+            cost: price,
+            image: image
         };
 
         const idRecipe = await connection.insertData("recipe", data)
         if(ingredients[0] != null) {
-            console.log(ingredients[0])
             for (let i = 0; i < ingredients.length; i++) {
                 const result = await connection.getData("ingredient", "name", ingredients[i]);
                 const idIngredient = result[0].id;
@@ -54,6 +55,21 @@ async function postRecipe(req, res) {
     }
 }
 
+async function apiRecipePostLoad(req, res) {
+    try {
+        const mealId = req.params.id;
+        const apiUrl = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`;
+
+        const response = await axios.get(apiUrl);
+        
+        nav.loadNewPage(req, res, "recipe-post", response.data);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error fetching data from the API' });
+    }
+}
+
+
 module.exports = {
-    postRecipe
+    postRecipe, apiRecipePostLoad
 };

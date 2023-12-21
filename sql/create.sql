@@ -27,7 +27,8 @@ CREATE TABLE IF NOT EXISTS recipe (
     difficulty VARCHAR(50) NOT NULL,
     category VARCHAR(50) NOT NULL,
     time INT NOT NULL,
-    cost DECIMAL(10, 2) NOT NULL
+    cost DECIMAL(10, 2) NOT NULL,
+    image longblob NOT NULL
 );
 
 -- Create the recipe_ingredient table to connect recipe and ingredient

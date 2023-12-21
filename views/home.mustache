@@ -41,7 +41,7 @@
                             <div class="hero-slides-content" data-animation="fadeInUp" data-delay="100ms">
                                 <h2 id="nameMealContainer1" style="color: #ffffff;" data-animation="fadeInUp" data-delay="300ms">Delicios Homemade Burger</h2>
                                 <p id="descriptionMealContainer1" style="color: #ffffff; data-animation="fadeInUp" data-delay="700ms">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tristique nisl vitae luctus sollicitudin. Fusce consectetur sem eget dui tristique, ac posuere arcu varius.</p>
-                                <a id="linkMealContainer1" href="#" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">See Receipe</a>
+                                <a id="linkMealContainer1" href="" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">See Receipe</a>
                             </div>
                         </div>
                     </div>
@@ -191,7 +191,7 @@
             document.getElementById(`imageMealContainer1`).style.backgroundImage = 'url(' + meal.strMealThumb + ')';
             document.getElementById(`nameMealContainer1`).innerText = meal.strMeal;
             document.getElementById(`descriptionMealContainer1`).innerText = meal.strInstructions.replace(/(\r\n|\n|\r)/gm,"");;
-            document.getElementById(`linkMealContainer1`).href = '/recipe/' + meal.idMeal;
+            document.getElementById(`linkMealContainer1`).href = '/api/' + meal.idMeal;
             var divs = document.getElementById(`descriptionMealContainer1`);
             divs.innerHTML = divs.innerHTML.substring(0,1000);
         }
