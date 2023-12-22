@@ -1,4 +1,4 @@
-function loadNewPage(req, res, page, data = null) {
+function loadNewPage(req, res, page, data = null, data2 = null) {
     switch (page) {
         case 'home':
             return res.render('home', { menu: [ { isLogged: req.session.authenticated } ], footer: "footer"});
@@ -12,7 +12,7 @@ function loadNewPage(req, res, page, data = null) {
             }
             return res.render('login', { menu: [ { isLogged: req.session.authenticated } ], footer: "footer"});
         case 'recipe-post':
-            return res.render('recipe-post', { menu: [ { isLogged: req.session.authenticated } ], recipe: data, footer: "footer", isLogged: req.session.authenticated});
+            return res.render('recipe-post', { menu: [ { isLogged: req.session.authenticated } ], recipe: data, ingNames: data2, footer: "footer", isLogged: req.session.authenticated});
     
         case 'recipe-postAPI':
             return res.render('recipe-postAPI', { menu: [ { isLogged: req.session.authenticated } ], recipe: data.meals[0], footer: "footer", isLogged: req.session.authenticated});

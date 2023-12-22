@@ -35,7 +35,9 @@ app.get('/api:id', function (req, res) {
     recipes.apiRecipePostLoad(req, res);
 });
 
-
+app.get('/recipe-post:id', function (req, res) {
+    recipes.recipePostLoad(req, res);
+});
 
 app.get('/add-ingredient', function (req, res) {
     nav.loadNewPage(req, res, "add-ingredient");

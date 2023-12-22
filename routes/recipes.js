@@ -60,7 +60,22 @@ async function loadFourRecipes(req, res) {
 }
 
 async function recipePostLoad(req, res) {
-
+    try {
+        const namesArray = [];
+        const result = await connection.getData("recipe", "id", req.params.id);
+        const resultAux = await connection.getData("recipe_ingredient", "recipe_id", req.params.id);
+        for(let i = 0; i< resultAux.length; i++) {
+            const r = await connection.getData("ingredient", "id", resultAux[i].ingredient_id);
+            namesArray.push(r[0].name);
+        }
+        if (result.length === 0) {
+            return nav.loadNewPage(req, res, "home");
+        }
+        nav.loadNewPage(req, res, "recipe-post", result[0], namesArray);
+    }
+    catch (err) {
+        console.log('Error retrieving recipe data:', err);
+    }
 }
 
 async function apiRecipePostLoad(req, res) {
