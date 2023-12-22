@@ -27,10 +27,9 @@ app.get('/', function (req, res) {
     nav.loadNewPage(req, res, "home");
 });
 
-app.get('/recipes', function (req, res) {
-    res.send('This is the /api route');
+app.get('/recipe-list', function (req, res) {
+    nav.loadNewPage(req, res, "recipe-list");
 });
-
 
 app.get('/api:id', function (req, res) {
     recipes.apiRecipePostLoad(req, res);

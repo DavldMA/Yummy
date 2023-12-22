@@ -493,7 +493,7 @@ textarea:focus {
 .size-max {
   position: relative;
   width: 100%;
-  min-height: 820px;
+  min-height: 580px;
 }
   
 .hero-slides {

@@ -16,6 +16,8 @@ function loadNewPage(req, res, page, data = null) {
     
         case 'recipe-postAPI':
             return res.render('recipe-postAPI', { menu: [ { isLogged: req.session.authenticated } ], recipe: data.meals[0], footer: "footer", isLogged: req.session.authenticated});
+        case 'recipe-list':
+            return res.render('recipe-list', { menu: [ { isLogged: req.session.authenticated } ], footer: "footer"});
         case 'add-recipe':
             if(req.session.authenticated) {
                 return res.render('add-recipe', { menu: [ { isLogged: req.session.authenticated } ], ingredients: data, footer: "footer"});

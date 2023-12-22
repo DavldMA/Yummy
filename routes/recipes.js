@@ -55,6 +55,14 @@ async function postRecipe(req, res) {
     }
 }
 
+async function loadFourRecipes(req, res) {
+    console.log("xd")
+}
+
+async function recipePostLoad(req, res) {
+
+}
+
 async function apiRecipePostLoad(req, res) {
     try {
         const mealId = req.params.id;
@@ -71,5 +79,5 @@ async function apiRecipePostLoad(req, res) {
 
 
 module.exports = {
-    postRecipe, apiRecipePostLoad
+    postRecipe, apiRecipePostLoad, loadFourRecipes, recipePostLoad
 };
