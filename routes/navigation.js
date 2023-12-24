@@ -25,6 +25,7 @@ function loadNewPage(req, res, page, data = null, data2 = null) {
         case 'recipe-list':
             let recipesPerPage = 2;
             let currentPage = req.params.id;
+            console.log(data)
             if(currentPage == undefined) {
                 currentPage = 1;
             }
@@ -37,7 +38,7 @@ function loadNewPage(req, res, page, data = null, data2 = null) {
             let totalPages = Math.ceil(data.length / recipesPerPage);
             let nextPage = currentPage < totalPages ? Number(currentPage) + 1 : null;
             let prevPage = currentPage > 1 ? Number(currentPage) - 1 : null;
-            return res.render('recipe-list', { menu: [ { isLogged: req.session.authenticated } ], recipes: recipesToRender, nextPage: nextPage, prevPage: prevPage, footer: "footer"});
+            return res.render('recipe-list', { menu: [ { isLogged: req.session.authenticated } ], filter: data2, recipes: recipesToRender, nextPage: nextPage, prevPage: prevPage, footer: "footer"});
         case 'add-recipe':
             if(req.session.authenticated) {
                 return res.render('add-recipe', { menu: [ { isLogged: req.session.authenticated } ], ingredients: data, footer: "footer"});

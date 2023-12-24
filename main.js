@@ -2,11 +2,6 @@ const express = require('express');
 
 const mustacheExpress = require('mustache-express');
 const cookieSession = require('cookie-session');
-const user = require('./routes/user'); 
-const recipes = require('./routes/recipes');
-const ingredients = require('./routes/ingredients');
-const nav = require('./routes/navigation');
-
 const app = express();
 app.use(express.static(__dirname + '/public'));
 app.use(express.json({limit: '50mb'}));
@@ -20,6 +15,12 @@ app.use(cookieSession({
     keys: ['secretKey'],
     maxAge: 24 * 60 * 60 * 1000, 
 }));
+const user = require('./routes/user'); 
+const recipes = require('./routes/recipes');
+const ingredients = require('./routes/ingredients');
+const nav = require('./routes/navigation');
+
+let filterRecipe = undefined;
 
 
 
@@ -38,9 +39,14 @@ app.get('/recipe-list:id', async (req, res) => {
     nav.loadNewPage(req, res, "recipe-list", data);
 });
 
-app.post('/recipe-list-filters', async (req, res) => {
+app.post('/recipe-filters', async (req, res) => {
     let data = await recipes.getRecipesWithFilter(req, res);
-    nav.loadNewPage(req, res, "recipe-list", data);
+    filterRecipe = data;
+    nav.loadNewPage(req, res, "recipe-list", data, true);
+});
+
+app.get('/asda:id', async (req, res) => {
+    nav.loadNewPage(req, res, "recipe-list", filterRecipe, true);
 });
 
 app.get('/api:id', function (req, res) {

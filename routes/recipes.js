@@ -104,18 +104,19 @@ async function getAllRecipes() {
     return recipe;
 }
 
-async function getRecipesWithFilter(req, res) {
-    const difficulty = req.body.difficulty;
-    const category = req.body.category;
-    let recipe = null;
-    if(difficulty != "none" && category != "none") {
-        recipe = await connection.getData("recipe", "difficulty", difficulty, "category", category);
+async function getRecipesWithFilter(req, res, newFilter = true) {
+    if(newFilter) {
+        req.session.difficulty = req.body.difficulty;
+        req.session.category = req.body.category;
     }
-    else if(difficulty != "none") {
-        recipe = await connection.getData("recipe", "difficulty", difficulty);
+    if(req.session.difficulty != "none" && req.session.category != "none") {
+        recipe = await connection.getData("recipe", "difficulty", req.session.difficulty, "category", req.session.category);
     }
-    else if(category != "none") {
-        recipe = await connection.getData("recipe", "category", category);
+    else if(req.session.difficulty != "none") {
+        recipe = await connection.getData("recipe", "difficulty", req.session.difficulty);
+    }
+    else if(req.session.category != "none") {
+        recipe = await connection.getData("recipe", "category", req.session.category);
     }
     else {
         recipe = await connection.getData("recipe");

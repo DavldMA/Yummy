@@ -51,7 +51,7 @@
         <!-- Receipe Post Search -->
         <div class="receipe-post-search mb-80">
             <div class="container">
-                <form action="/recipe-list-filters" method="post">
+                <form action="/recipe-filters" method="post">
                     <div class="row">
                         <div class="col-12 col-lg-4 ">
                             <select class="form-control2" id="difficulty" name="difficulty" placeholder="Select One!" required>
@@ -112,16 +112,31 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-lg-4 text-center">
-                        {{#prevPage}}
-                            <button onclick="window.location.href='/recipe-list{{prevPage}}'" class="btn delicious-btn">Previous</button>
-                        {{/prevPage}}
+                        {{#filter}}
+                            {{#prevPage}}
+                                <button onclick="window.location.href='/asda{{prevPage}}'" class="btn delicious-btn">Previous</button>
+                            {{/prevPage}}
+                        {{/filter}}
+                        {{^filter}}
+                            {{#prevPage}}
+                                <button onclick="window.location.href='/recipe-list{{prevPage}}'" class="btn delicious-btn">Previous</button>
+                            {{/prevPage}}
+                        {{/filter}}
                     </div>
                     <div class="col-12 col-lg-4 text-center">
                     </div>
                     <div class="col-12 col-lg-4 text-center">
-                        {{#nextPage}}
-                            <button onclick="window.location.href='/recipe-list{{nextPage}}'" class="btn delicious-btn">Next</button>
-                        {{/nextPage}}
+                        {{#filter}}
+                            {{#nextPage}}
+                                <button onclick="window.location.href='/asda{{nextPage}}'" class="btn delicious-btn">Next</button>
+                            {{/nextPage}}
+                        {{/filter}}
+                        {{^filter}}
+                            {{#nextPage}}
+                                <button onclick="window.location.href='/recipe-list{{nextPage}}'" class="btn delicious-btn">Next</button>
+                            {{/nextPage}}
+                        {{/filter}}
+
                     </div>
                 </div>
             </div>
