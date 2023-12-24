@@ -1,7 +1,13 @@
 function loadNewPage(req, res, page, data = null, data2 = null) {
     switch (page) {
         case 'home':
-            return res.render('home', { menu: [ { isLogged: req.session.authenticated } ], footer: "footer"});
+            data2 = []
+            data2.push(data[2]);
+            data2.push(data[3]);
+            data.pop()
+            data.pop()
+
+            return res.render('home', { menu: [ { isLogged: req.session.authenticated } ], recipes: data, recipes2: data2, footer: "footer"});
         case 'login':
             return res.render('login', { menu: [ { isLogged: req.session.authenticated } ], footer: "footer"});
         case 'register':

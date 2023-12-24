@@ -1,4 +1,5 @@
 const connection = require("./connection")
+const recipes = require('./recipes');
 const nav = require("./navigation")
 
 async function postIngredient(req, res) {
@@ -8,7 +9,8 @@ async function postIngredient(req, res) {
             const data = {name: nav.capitalizeFirstLetter(req.body.ingredient)}
             await connection.insertData("ingredient", data)
         }
-        nav.loadNewPage(req, res, "home");
+        let data = await recipes.getFourRecipes();
+        return nav.loadNewPage(req, res, "home", data);
     }
     catch (err) {
         console.log('Error retrieving ingredients data:', err);

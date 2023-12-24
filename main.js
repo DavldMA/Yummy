@@ -23,8 +23,9 @@ app.use(cookieSession({
 
 
 
-app.get('/', function (req, res) {
-    nav.loadNewPage(req, res, "home");
+app.get('/', async (req, res) => {
+    let data = await recipes.getFourRecipes()
+    nav.loadNewPage(req, res, "home", data);
 });
 
 app.get('/recipe-list', function (req, res) {
@@ -86,9 +87,10 @@ app.post('/register', async (req, res) => {
     await user.postRegister(req, res);
 });
 
-app.get('/logout', function (req, res) {
+app.get('/logout', async (req, res) => {
     req.session.authenticated = false;
-    nav.loadNewPage(req, res, "home")
+    let data = await recipes.getFourRecipes();
+    return nav.loadNewPage(req, res, "home", data);
 });
 
 app.listen(8000, (err) => {

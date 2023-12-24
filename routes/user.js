@@ -6,7 +6,8 @@ async function postLogin(req, res) {
         const result = await connection.getData("user", "gmail", nav.lowerCase(req.body.gmail), "password", req.body.password);
         if (result.length > 0) {
             req.session.authenticated = true;
-            nav.loadNewPage(req, res, "home");
+            let data = getFourRecipes();
+            return nav.loadNewPage(req, res, "home", data);
         } else {
             nav.loadNewPage(req, res, "login");
         }

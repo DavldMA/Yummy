@@ -48,15 +48,21 @@ async function postRecipe(req, res) {
         }
         
 
-        nav.loadNewPage(req, res, 'home');
+        let data2 = getFourRecipes();
+        return nav.loadNewPage(req, res, "home", data2);
     }
     catch (err) {
         console.log('Error retrieving recipe data:', err);
     }
 }
 
-async function loadFourRecipes(req, res) {
-    console.log("xd")
+async function getFourRecipes(req, res) {
+    const jsonArray = [];
+    for(let i = 1; i < 5; i++) {
+        const r = await connection.getData("recipe", "id", i);
+        jsonArray.push(r[0]);
+    }
+    return jsonArray;
 }
 
 async function recipePostLoad(req, res) {
@@ -69,7 +75,8 @@ async function recipePostLoad(req, res) {
             namesArray.push(r[0].name);
         }
         if (result.length === 0) {
-            return nav.loadNewPage(req, res, "home");
+            let data = getFourRecipes();
+            return nav.loadNewPage(req, res, "home", data);
         }
         nav.loadNewPage(req, res, "recipe-post", result[0], namesArray);
     }
@@ -94,5 +101,5 @@ async function apiRecipePostLoad(req, res) {
 
 
 module.exports = {
-    postRecipe, apiRecipePostLoad, loadFourRecipes, recipePostLoad
+    postRecipe, apiRecipePostLoad, getFourRecipes, recipePostLoad
 };
