@@ -28,8 +28,9 @@ app.get('/', async (req, res) => {
     nav.loadNewPage(req, res, "home", data);
 });
 
-app.get('/recipe-list', function (req, res) {
-    nav.loadNewPage(req, res, "recipe-list");
+app.get('/recipe-list', async (req, res) => {
+    let data = await recipes.getAllRecipes();
+    nav.loadNewPage(req, res, "recipe-list", data);
 });
 
 app.get('/api:id', function (req, res) {

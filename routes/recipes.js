@@ -99,7 +99,11 @@ async function apiRecipePostLoad(req, res) {
     }
 }
 
+async function getAllRecipes() {
+    const recipe = await connection.getData("recipe");
+    return recipe;
+}
 
 module.exports = {
-    postRecipe, apiRecipePostLoad, getFourRecipes, recipePostLoad
+    postRecipe, apiRecipePostLoad, getFourRecipes, recipePostLoad, getAllRecipes
 };
