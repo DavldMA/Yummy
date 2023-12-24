@@ -48,7 +48,7 @@ async function postRecipe(req, res) {
         }
         
 
-        let data2 = getFourRecipes();
+        let data2 = await getFourRecipes();
         return nav.loadNewPage(req, res, "home", data2);
     }
     catch (err) {
@@ -56,7 +56,7 @@ async function postRecipe(req, res) {
     }
 }
 
-async function getFourRecipes(req, res) {
+async function getFourRecipes() {
     const jsonArray = [];
     for(let i = 1; i < 5; i++) {
         const r = await connection.getData("recipe", "id", i);
@@ -75,7 +75,7 @@ async function recipePostLoad(req, res) {
             namesArray.push(r[0].name);
         }
         if (result.length === 0) {
-            let data = getFourRecipes();
+            let data = await getFourRecipes();
             return nav.loadNewPage(req, res, "home", data);
         }
         nav.loadNewPage(req, res, "recipe-post", result[0], namesArray);
@@ -104,6 +104,25 @@ async function getAllRecipes() {
     return recipe;
 }
 
+async function getRecipesWithFilter(req, res) {
+    const difficulty = req.body.difficulty;
+    const category = req.body.category;
+    let recipe = null;
+    if(difficulty != "none" && category != "none") {
+        recipe = await connection.getData("recipe", "difficulty", difficulty, "category", category);
+    }
+    else if(difficulty != "none") {
+        recipe = await connection.getData("recipe", "difficulty", difficulty);
+    }
+    else if(category != "none") {
+        recipe = await connection.getData("recipe", "category", category);
+    }
+    else {
+        recipe = await connection.getData("recipe");
+    }
+    return recipe;
+}
+
 module.exports = {
-    postRecipe, apiRecipePostLoad, getFourRecipes, recipePostLoad, getAllRecipes
+    postRecipe, apiRecipePostLoad, getFourRecipes, recipePostLoad, getAllRecipes, getRecipesWithFilter
 };

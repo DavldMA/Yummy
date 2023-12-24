@@ -38,6 +38,11 @@ app.get('/recipe-list:id', async (req, res) => {
     nav.loadNewPage(req, res, "recipe-list", data);
 });
 
+app.post('/recipe-list-filters', async (req, res) => {
+    let data = await recipes.getRecipesWithFilter(req, res);
+    nav.loadNewPage(req, res, "recipe-list", data);
+});
+
 app.get('/api:id', function (req, res) {
     recipes.apiRecipePostLoad(req, res);
 });

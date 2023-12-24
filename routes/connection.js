@@ -99,16 +99,6 @@ async function deleteAllData(table) {
     }
 }
 
-async function getAllData(table) {
-    try {
-        const sql = `SELECT * FROM ${table}`;
-        const result = await query(sql);
-        return(result);
-    } catch (err) {
-        console.log('Error accessing database: ' + err);
-    }
-}
-
 module.exports = {
-    getAllData, deleteAllData, getData, editDataById, deleteDataById, insertData, query
+    deleteAllData, getData, editDataById, deleteDataById, insertData, query
 };

@@ -1,12 +1,13 @@
 const connection = require("./connection")
 const nav = require('./navigation');
+const recipes = require('./recipes');
 
 async function postLogin(req, res) {
     try {
         const result = await connection.getData("user", "gmail", nav.lowerCase(req.body.gmail), "password", req.body.password);
         if (result.length > 0) {
             req.session.authenticated = true;
-            let data = getFourRecipes();
+            let data = await recipes.getFourRecipes();
             return nav.loadNewPage(req, res, "home", data);
         } else {
             nav.loadNewPage(req, res, "login");

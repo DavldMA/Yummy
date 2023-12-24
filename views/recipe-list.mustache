@@ -51,30 +51,26 @@
         <!-- Receipe Post Search -->
         <div class="receipe-post-search mb-80">
             <div class="container">
-                <form action="#" method="post">
+                <form action="/recipe-list-filters" method="post">
                     <div class="row">
-                        <div class="col-12 col-lg-3">
-                            <select name="select1" id="select1">
-                                <option value="1">All Receipies Categories</option>
-                                <option value="1">All Receipies Categories 2</option>
-                                <option value="1">All Receipies Categories 3</option>
-                                <option value="1">All Receipies Categories 4</option>
-                                <option value="1">All Receipies Categories 5</option>
+                        <div class="col-12 col-lg-4 ">
+                            <select class="form-control2" id="difficulty" name="difficulty" placeholder="Select One!" required>
+                                <option value="none">None</option>
+                                <option value="Beginner">Beginner</option>
+                                <option value="Intermediate">Intermediate</option>
+                                <option value="Expert">Expert</option>
                             </select>
                         </div>
-                        <div class="col-12 col-lg-3">
-                            <select name="select1" id="select2">
-                                <option value="1">All Receipies Categories</option>
-                                <option value="1">All Receipies Categories 2</option>
-                                <option value="1">All Receipies Categories 3</option>
-                                <option value="1">All Receipies Categories 4</option>
-                                <option value="1">All Receipies Categories 5</option>
+                        <div class="col-12 col-lg-4 text-center">
+                            <select class="form-control2" id="category" name="category" placeholder="Select One!" required>
+                                <option value="none">None</option>
+                                <option value="Breakfast">Breakfast</option>
+                                <option value="Lunch">Lunch</option>
+                                <option value="Dinner">Dinner</option>
+                                <option value="Desserts">Desserts</option>
                             </select>
                         </div>
-                        <div class="col-12 col-lg-3">
-                            <input type="search" name="search" placeholder="Search Receipies">
-                        </div>
-                        <div class="col-12 col-lg-3 text-right">
+                        <div class="col-12 col-lg-4 text-center">
                             <button type="submit" class="btn delicious-btn">Search</button>
                         </div>
                     </div>
@@ -109,16 +105,26 @@
             </div>
         </div>
     </section>
-    <div class="row">
-        <div class="col-12 col-lg-6 text-center">
-            {{#prevPage}}
-                <button onclick="window.location.href='/recipe-list{{prevPage}}'" class="btn delicious-btn">Previous</button>
-            {{/prevPage}}
-        </div>
-        <div class="col-12 col-lg-6 text-center">
-            {{#nextPage}}
-                <button onclick="window.location.href='/recipe-list{{nextPage}}'" class="btn delicious-btn">Next</button>
-            {{/nextPage}}
+    <div class="receipe-post-area section-padding-80">
+
+        <!-- Receipe Post Search -->
+        <div class="receipe-post-search mb-80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-lg-4 text-center">
+                        {{#prevPage}}
+                            <button onclick="window.location.href='/recipe-list{{prevPage}}'" class="btn delicious-btn">Previous</button>
+                        {{/prevPage}}
+                    </div>
+                    <div class="col-12 col-lg-4 text-center">
+                    </div>
+                    <div class="col-12 col-lg-4 text-center">
+                        {{#nextPage}}
+                            <button onclick="window.location.href='/recipe-list{{nextPage}}'" class="btn delicious-btn">Next</button>
+                        {{/nextPage}}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

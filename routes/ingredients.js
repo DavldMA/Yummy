@@ -19,7 +19,7 @@ async function postIngredient(req, res) {
 
 async function getAllIngredients(req, res){
     try {
-        const result = await connection.getAllData("ingredient");
+        const result = await connection.getData("ingredient");
         return result;
     }
     catch (err) {
