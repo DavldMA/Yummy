@@ -109,6 +109,18 @@
             </div>
         </div>
     </section>
+    <div class="row">
+        <div class="col-12 col-lg-6 text-center">
+            {{#prevPage}}
+                <button onclick="window.location.href='/recipe-list{{prevPage}}'" class="btn delicious-btn">Previous</button>
+            {{/prevPage}}
+        </div>
+        <div class="col-12 col-lg-6 text-center">
+            {{#nextPage}}
+                <button onclick="window.location.href='/recipe-list{{nextPage}}'" class="btn delicious-btn">Next</button>
+            {{/nextPage}}
+        </div>
+    </div>
 
     <!-- ##### Footer Area Start ##### -->
     {{>footer}}

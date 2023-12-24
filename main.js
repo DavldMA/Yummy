@@ -33,6 +33,11 @@ app.get('/recipe-list', async (req, res) => {
     nav.loadNewPage(req, res, "recipe-list", data);
 });
 
+app.get('/recipe-list:id', async (req, res) => {
+    let data = await recipes.getAllRecipes();
+    nav.loadNewPage(req, res, "recipe-list", data);
+});
+
 app.get('/api:id', function (req, res) {
     recipes.apiRecipePostLoad(req, res);
 });

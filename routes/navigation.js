@@ -23,8 +23,21 @@ function loadNewPage(req, res, page, data = null, data2 = null) {
         case 'recipe-postAPI':
             return res.render('recipe-postAPI', { menu: [ { isLogged: req.session.authenticated } ], recipe: data.meals[0], footer: "footer", isLogged: req.session.authenticated});
         case 'recipe-list':
-            //split by page here...
-            return res.render('recipe-list', { menu: [ { isLogged: req.session.authenticated } ], recipes: data, footer: "footer"});
+            let recipesPerPage = 2;
+            let currentPage = req.params.id;
+            if(currentPage == undefined) {
+                currentPage = 1;
+            }
+            
+            let start = (currentPage - 1) * recipesPerPage;
+            let end = start + recipesPerPage;
+            let recipesToRender = data.slice(start, end);
+
+
+            let totalPages = Math.ceil(data.length / recipesPerPage);
+            let nextPage = currentPage < totalPages ? Number(currentPage) + 1 : null;
+            let prevPage = currentPage > 1 ? Number(currentPage) - 1 : null;
+            return res.render('recipe-list', { menu: [ { isLogged: req.session.authenticated } ], recipes: recipesToRender, nextPage: nextPage, prevPage: prevPage, footer: "footer"});
         case 'add-recipe':
             if(req.session.authenticated) {
                 return res.render('add-recipe', { menu: [ { isLogged: req.session.authenticated } ], ingredients: data, footer: "footer"});
