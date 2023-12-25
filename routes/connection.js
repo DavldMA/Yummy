@@ -33,11 +33,9 @@ async function insertData(table, data) {
         const sql = `INSERT INTO ${table} SET ?`;
         const result = await query(sql, data);
         const insertedId = result.insertId;
-        console.log('Data inserted successfully.');
         return insertedId;
     } catch (err) {
         console.log('Error inserting data: ' + err);
-        throw err; // Rethrow the error to be caught by the caller
     }
 }
 
@@ -84,18 +82,6 @@ async function getData(table, param = null, value = null, param2 = null, value2 
         return result;
     } catch (err) {
         console.log('Error retrieving data: ' + err);
-    }
-}
-
-
-
-async function deleteAllData(table) {
-    try {
-        const sql = `DELETE FROM ${table}`;
-        await query(sql);
-        console.log('All data deleted successfully');
-    } catch (err) {
-        console.log('Error deleting data: ' + err);
     }
 }
 
