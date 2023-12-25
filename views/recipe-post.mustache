@@ -71,8 +71,8 @@
                                 <h6>Category: {{recipe.category}}</h6>
                                 <h6>Author: {{recipe.author}}</h6>
                                 {{#isLogged}}
-                                    <button onclick="deleteElement()">Delete</button>
-                                    <button onclick="editElement()">Edit</button>
+                                    <button onclick="window.location.href='/edit{{recipe.id}}'" class="btn delicious-btn">Edit</button>
+                                    <button onclick="window.location.href='/delete{{recipe.id}}'" class="btn delicious-btn">Delete</button>
                                 {{/isLogged}}
                                 
                             </div>

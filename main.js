@@ -45,8 +45,18 @@ app.post('/recipe-filters', async (req, res) => {
     nav.loadNewPage(req, res, "recipe-list", data, true);
 });
 
-app.get('/asda:id', async (req, res) => {
+app.get('/go-to-page:id', async (req, res) => {
     nav.loadNewPage(req, res, "recipe-list", filterRecipe, true);
+});
+
+app.get('/delete:id', async (req, res) => {
+    recipes.deleteRecipe(req, res);
+    let data = await recipes.getFourRecipes();
+    nav.loadNewPage(req, res, "home", data);
+});
+
+app.get('/edit:id', async (req, res) => {
+    await recipes.editRecipe(req, res);
 });
 
 app.get('/api:id', function (req, res) {

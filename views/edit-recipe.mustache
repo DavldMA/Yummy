@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Delicious - Food Blog Template | Contact</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/core-img/favicon.ico">
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <i class="circle-preloader"></i>
+        <img src="img/core-img/salad.png" alt="">
+    </div>
+
+
+    <!-- ##### Header Area Start ##### -->
+    {{>menu}}
+    <!-- ##### Header Area End ##### -->
+    <!-- ##### Contact Form Area Start ##### -->
+    <div class="contact-area section-padding-0-80">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading">
+                        <h3>Post a New Recipe</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="contact-form-area">
+                        <form action="/add-recipe" method="post">
+                            <div class="row">
+                                <div class="col-12 col-lg-6">
+                                    <input type="text" class="form-control" id="recipe" name="recipe" value="{{recipe.recipe_name}}" required>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <input type="text" class="form-control" id="author" name="author" value="{{recipe.author}}" required>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <input type="number" class="form-control" min="0" step="any" id="price" name="price" value="{{recipe.cost}}" required>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <input type="number" class="form-control" id="time" name="time" value="{{recipe.time}}" required>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <select class="form-control2" id="difficulty" name="difficulty" value="{{recipe.difficulty}}" required>
+                                        <option value="Beginner">Beginner</option>
+                                        <option value="Intermediate">Intermediate</option>
+                                        <option value="Expert">Expert</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <select class="form-control2" id="category" name="category" value="{{recipe.category}}" required>
+                                        <option value="Breakfast">Breakfast</option>
+                                        <option value="Lunch">Lunch</option>
+                                        <option value="Dinner">Dinner</option>
+                                        <option value="Desserts">Desserts</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <textarea name="description" class="form-control" id="description" cols="30" rows="10" value="{{recipe.preparation_description}}"></textarea>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <input type="file" name="image" id="image" accept="image/*" onchange="handleImageUpload()">
+                                    <input type="hidden" name="imageData" id="imageData">
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div id="unique-box-form">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div id="unique-box-input">
+                                    </div>
+                                    <div class="col-12 text-center">
+                                        <button class="btn delicious-btn mt-30" onclick="createMoreEntries()">+</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-12 text-center">
+                                    <button class="btn delicious-btn mt-30" type="submit">Create New!</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Contact Form Area End ##### -->
+
+
+    <!-- ##### Footer Area Start ##### -->
+    {{>footer}}
+    <!-- ##### Footer Area Start ##### -->
+
+    <!-- ##### All Javascript Files ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="js/active.js"></script>
+    <script>
+        let entryCount = 0;
+        function handleImageUpload() {
+            const input = document.getElementById('image');
+            const file = input.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const imageData = e.target.result;
+                    document.getElementById('imageData').value = imageData;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function createMoreEntries() {
+            entryCount++;
+
+            const newEntry1 = `
+                <div class="col-12">
+                    <input type="text" class="form-control" id="author" name="ammounts" placeholder="Ingredient Ammount" required>
+                </div>
+            `;
+
+            const newEntry = `
+                <div class="col-12">
+                    <select class="form-control2" id="ingredient" name="ingredients" placeholder="Select One!" required>
+                        {{#ingredients}}
+                            <option value="{{name}}">{{name}}</option>
+                        {{/ingredients}}
+                    </select>
+                </div>
+            `;
+
+            $('#unique-box-form').append(newEntry);
+            $('#unique-box-input').append(newEntry1);
+        }
+    </script>
+</body>
+
+</html>

@@ -65,24 +65,39 @@ async function getFourRecipes() {
     return jsonArray;
 }
 
-async function recipePostLoad(req, res) {
+async function recipePostLoad(req, res, toReturn = false) {
     try {
         const namesArray = [];
+        const ingredientArray = [];
         const result = await connection.getData("recipe", "id", req.params.id);
         const resultAux = await connection.getData("recipe_ingredient", "recipe_id", req.params.id);
         for(let i = 0; i< resultAux.length; i++) {
             const r = await connection.getData("ingredient", "id", resultAux[i].ingredient_id);
             namesArray.push(r[0].name);
+            ingredientArray.push(r[0])
         }
         if (result.length === 0) {
             let data = await getFourRecipes();
             return nav.loadNewPage(req, res, "home", data);
+        }
+        if (toReturn) {
+            return result[0], ingredientArray;
         }
         nav.loadNewPage(req, res, "recipe-post", result[0], namesArray);
     }
     catch (err) {
         console.log('Error retrieving recipe data:', err);
     }
+}
+
+async function deleteRecipe(req, res) {
+    recipePostLoad(req, res)
+    await connection.deleteDataById("recipe", req.params.id)
+}
+
+async function editRecipe(req, res) {
+    const result = await connection.getData("recipe", "id", req.params.id);
+    nav.loadNewPage(req, res, "edit-recipe", result[0]);
 }
 
 async function apiRecipePostLoad(req, res) {
@@ -125,5 +140,5 @@ async function getRecipesWithFilter(req, res, newFilter = true) {
 }
 
 module.exports = {
-    postRecipe, apiRecipePostLoad, getFourRecipes, recipePostLoad, getAllRecipes, getRecipesWithFilter
+    postRecipe, apiRecipePostLoad, getFourRecipes, recipePostLoad, getAllRecipes, getRecipesWithFilter, deleteRecipe, editRecipe
 };
