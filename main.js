@@ -50,13 +50,19 @@ app.get('/go-to-page:id', async (req, res) => {
 });
 
 app.get('/delete:id', async (req, res) => {
-    recipes.deleteRecipe(req, res);
+    if(req.session.authenticated) {
+        recipes.deleteRecipe(req, res);
+    }
     let data = await recipes.getFourRecipes();
     nav.loadNewPage(req, res, "home", data);
 });
 
 app.get('/edit:id', async (req, res) => {
     await recipes.editRecipe(req, res);
+});
+
+app.post('/edit:id', async (req, res) => {
+    await recipes.editRecipeUpdate(req, res);
 });
 
 app.get('/api:id', function (req, res) {

@@ -45,6 +45,10 @@ async function deleteDataById(table, id) {
             const deleteIngredientsSql = 'DELETE FROM recipe_ingredient WHERE recipe_id = ?';
             await query(deleteIngredientsSql, id);
         }
+        if (table === 'recipe_ingredient') {
+            const deleteIngredientsSql = 'DELETE FROM recipe_ingredient WHERE recipe_id = ?';
+            await query(deleteIngredientsSql, id);
+        }
         const sql = `DELETE FROM ${table} WHERE id = ?`;
         await query(sql, id);
         console.log('Data deleted successfully');

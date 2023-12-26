@@ -44,7 +44,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="contact-form-area">
-                        <form action="/add-recipe" method="post">
+                        <form action="/edit{{recipe.id}}" method="post">
                             <div class="row">
                                 <div class="col-12 col-lg-6">
                                     <input type="text" class="form-control" id="recipe" name="recipe" value="{{recipe.recipe_name}}" required>
@@ -59,14 +59,14 @@
                                     <input type="number" class="form-control" id="time" name="time" value="{{recipe.time}}" required>
                                 </div>
                                 <div class="col-12 col-lg-6">
-                                    <select class="form-control2" id="difficulty" name="difficulty" value="{{recipe.difficulty}}" required>
+                                    <select class="form-control2" id="difficulty" name="difficulty" required>
                                         <option value="Beginner">Beginner</option>
                                         <option value="Intermediate">Intermediate</option>
                                         <option value="Expert">Expert</option>
                                     </select>
                                 </div>
                                 <div class="col-12 col-lg-6">
-                                    <select class="form-control2" id="category" name="category" value="{{recipe.category}}" required>
+                                    <select class="form-control2" id="category" name="category" required>
                                         <option value="Breakfast">Breakfast</option>
                                         <option value="Lunch">Lunch</option>
                                         <option value="Dinner">Dinner</option>
@@ -74,7 +74,7 @@
                                     </select>
                                 </div>
                                 <div class="col-12 col-lg-6">
-                                    <textarea name="description" class="form-control" id="description" cols="30" rows="10" value="{{recipe.preparation_description}}"></textarea>
+                                    <textarea name="description" class="form-control" id="description" cols="30" rows="10">{{recipe.preparation_description}}</textarea>
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <input type="file" name="image" id="image" accept="image/*" onchange="handleImageUpload()">
@@ -93,7 +93,7 @@
                                 </div>
                                 
                                 <div class="col-12 text-center">
-                                    <button class="btn delicious-btn mt-30" type="submit">Create New!</button>
+                                    <button class="btn delicious-btn mt-30" type="submit">Update!</button>
                                 </div>
                             </div>
                         </form>
