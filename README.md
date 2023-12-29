@@ -32,11 +32,3 @@ Yummy is an open-source web application developed as part of a school project, a
 ## Template
 
 The project is built on top of the [Delicious - Free Bootstrap 4 HTML5 Recipe Website Template](https://themewagon.com/themes/free-bootstrap-4-html5-recipe-website-template-delicious/). This template provides a clean and modern design, ensuring a seamless and visually appealing user experience.
-
-## Contribution
-
-Contributions are welcome! Whether you're a developer, designer, or tester, feel free to contribute to the project by opening issues, submitting pull requests, or providing feedback.
-
-Explore the ReceiptsHub project and take control of your receipts in a convenient and organized manner!
-
-**Link to Template:** [Delicious Template](https://themewagon.com/themes/free-bootstrap-4-html5-recipe-website-template-delicious/)
