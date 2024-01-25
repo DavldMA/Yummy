@@ -27,7 +27,10 @@ Yummy is an open-source web application developed as part of a school project, a
    ```bash
    cd Yummy
    ```
-3. Follow the setup instructions in the project documentation to configure the application.
+3. Install the modules.
+   ```bash
+   npm install mysql2 axios express mustache-express cookie-session
+   ```
 
 ## Template
 
