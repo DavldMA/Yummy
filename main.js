@@ -34,7 +34,7 @@ app.get('/recipe-list', async (req, res) => {
     nav.loadNewPage(req, res, "recipe-list", data);
 });
 
-//recipe-list/:id does not work because of front end issues...
+//recipe-list/:id does not work because of front-end issues...
 app.get('/recipe-list:id', async (req, res) => {
     let data = await recipes.getAllRecipes();
     nav.loadNewPage(req, res, "recipe-list", data);
@@ -55,7 +55,7 @@ app.get('/delete:id', async (req, res) => {
         recipes.deleteRecipe(req, res);
     }
     let data = await recipes.getFourRecipes();
-    nav.loadNewPage(req, res, "home", data);
+    nav.loadNewPage(req, res, "home", data, "", "Deletado com Sucesso");
 });
 
 app.get('/edit:id', async (req, res) => {

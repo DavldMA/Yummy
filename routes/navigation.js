@@ -1,4 +1,4 @@
-function loadNewPage(req, res, page, data = null, data2 = null) {
+function loadNewPage(req, res, page, data = null, data2 = null, error = null) {
     switch (page) {
         case 'home':
             data2 = []
@@ -7,7 +7,7 @@ function loadNewPage(req, res, page, data = null, data2 = null) {
             data.pop()
             data.pop()
 
-            return res.render('home', { menu: [ { isLogged: req.session.authenticated } ], recipes: data, recipes2: data2, footer: "footer"});
+            return res.render('home', { menu: [ { isLogged: req.session.authenticated } ], recipes: data, recipes2: data2, error: error, footer: "footer"});
         case 'login':
             return res.render('login', { menu: [ { isLogged: req.session.authenticated } ], footer: "footer"});
         case 'register':

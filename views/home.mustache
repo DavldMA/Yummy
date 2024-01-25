@@ -120,6 +120,14 @@
     <!-- Active js -->
     <script src="js/active.js"></script>
     <script>
+        window.onload = function() {
+            var error = "{{error}}";
+
+            if(error) {
+                alert(error);
+            }
+        }
+
         function getRandomMeal() {
             var xhr = new XMLHttpRequest();
 

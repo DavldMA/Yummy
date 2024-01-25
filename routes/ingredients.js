@@ -10,7 +10,7 @@ async function postIngredient(req, res) {
             await connection.insertData("ingredient", data)
         }
         let data = await recipes.getFourRecipes();
-        return nav.loadNewPage(req, res, "home", data);
+        return nav.loadNewPage(req, res, "home", data, "", "Ingrediente adicionado com Sucesso");
     }
     catch (err) {
         console.log('Error retrieving ingredients data:', err);

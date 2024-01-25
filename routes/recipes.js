@@ -49,7 +49,7 @@ async function postRecipe(req, res) {
         
 
         let data2 = await getFourRecipes();
-        return nav.loadNewPage(req, res, "home", data2);
+        return nav.loadNewPage(req, res, "home", data2, "", "Receita Adicionada com Sucesso");
     }
     catch (err) {
         console.log('Error retrieving recipe data:', err);
@@ -58,10 +58,14 @@ async function postRecipe(req, res) {
 
 async function getFourRecipes() {
     const jsonArray = [];
-    for(let i = 1; i < 5; i++) {
-        const r = await connection.getData("recipe", "id", i);
-        jsonArray.push(r[0]);
-    }
+    let r = await connection.getData("recipe", "id", 1);
+    jsonArray.push(r[0]);
+    r = await connection.getData("recipe", "id", 3);
+    jsonArray.push(r[0]);
+    r = await connection.getData("recipe", "id", 4);
+    jsonArray.push(r[0]);
+    r = await connection.getData("recipe", "id", 5);
+    jsonArray.push(r[0]);
     return jsonArray;
 }
 
@@ -91,14 +95,13 @@ async function recipePostLoad(req, res, toReturn = false) {
 }
 
 async function deleteRecipe(req, res) {
-    recipePostLoad(req, res)
     await connection.deleteDataById("recipe", req.params.id)
 }
 
 async function editRecipe(req, res) {
     const result = await connection.getData("recipe", "id", req.params.id);
     const ingredients = await connection.getData("ingredient");
-    nav.loadNewPage(req, res, "edit-recipe", result[0], ingredients);
+    nav.loadNewPage(req, res, "edit-recipe", result[0], ingredients, "Receita editada com sucesso.");
 }
 
 async function editRecipeUpdate(req, res) {
@@ -153,7 +156,7 @@ async function editRecipeUpdate(req, res) {
     }
 
     let data2 = await getFourRecipes();
-    return nav.loadNewPage(req, res, "home", data2);
+    return nav.loadNewPage(req, res, "home", data2, "", "Receita editada com sucesso.");
 }
 
 

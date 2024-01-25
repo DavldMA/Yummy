@@ -10,7 +10,8 @@ async function postLogin(req, res) {
             let data = await recipes.getFourRecipes();
             return nav.loadNewPage(req, res, "home", data);
         } else {
-            nav.loadNewPage(req, res, "login");
+            let data = await recipes.getFourRecipes();
+            nav.loadNewPage(req, res, "home", data, "", "", "Error trying to login.");
         }
     } catch (err) {
         console.log('Error retrieving user data:', err);
@@ -28,6 +29,8 @@ async function postRegister(req, res) {
     }
     catch (err) {
         console.log('Error retrieving user data:', err);
+        let data = await recipes.getFourRecipes();
+        nav.loadNewPage(req, res, "home", data, "", "", "Error trying to create an account.");
     }
 }
 
