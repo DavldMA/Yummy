@@ -25,7 +25,7 @@ Yummy is an open-source web application developed as part of a school project, a
    ```
 2. Navigate to the project directory.
    ```bash
-   cd Yummy
+   code Yummy
    ```
 3. Install the modules.
    ```bash
