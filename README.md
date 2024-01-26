@@ -31,6 +31,7 @@ Yummy is an open-source web application developed as part of a school project, a
    ```bash
    npm install mysql2 axios express mustache-express cookie-session
    ```
+4. Run the create.sql and populate.sql
 
 ## Template
 
